@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1280' height='1024' preserveAspectRatio='none' viewBox='0 0 1280 1024'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1024%26quot%3b)' fill='none'%3e%3crect width='1280' height='1024' x='0' y='0' fill='url(%26quot%3b%23SvgjsLinearGradient1025%26quot%3b)'%3e%3c/rect%3e%3cpath d='M1110.172584502707 433.85586693116886L829.8701074630851 379.093305786653 907.0195792940021 616.5349651424322z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1267.306%2c801.997C1367.578%2c800.493%2c1479.621%2c786.482%2c1528.357%2c698.838C1576.265%2c612.683%2c1523.055%2c514.275%2c1475.229%2c428.075C1425.254%2c338.002%2c1369.926%2c237.259%2c1267.306%2c228.332C1152.499%2c218.345%2c1043.029%2c285.566%2c985.614%2c385.486C928.394%2c485.066%2c927.983%2c611.746%2c992.324%2c706.881C1050.56%2c792.99%2c1163.365%2c803.557%2c1267.306%2c801.997' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M939.2987978320383 737.2649648854285L800.621612500212 546.3921942128726 609.7488418276561 685.0693795446989 748.4260271594824 875.9421502172548z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M584.6222116924629 1055.8487163662471L733.5605505554547 826.5037865823822 355.27728190859796 906.9103775032553z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M211.52186775977748 572.6042465109784L13.047314783955898 579.5351306254248 218.45275187422385 771.0787994868z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1238.6771940081946 273.77793871510715L1243.2145836520924 143.84409962917343 1046.045130201243 202.0049347062937z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1024'%3e%3crect width='1280' height='1024' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='5%25' y1='-6.25%25' x2='95%25' y2='106.25%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1025'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='%2300459e' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+}
+
+.s-container {
+    display: flex;
+    flex-direction: column;
+    margin: 3em auto;
+    width: 60%;
+    height: 90%;
+    min-width: 60%;
+    min-height: 90vh;
+    border-radius: 21px;
+    background: transparent;
+    box-shadow: inset 14px 14px 28px #246aa3, inset -14px -14px 28px #103b42;
+}
+
+.player-container {
+    width: 100%;
+}
+
+.song.playing {
+    width: 90%;
+    height: 30vh;
+    margin: 1em auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+@font-face {
+    font-family: "Vegabond";
+    src: url(../fonts/vegabond.ttf);
+}
+.song-desc {
+    width: 100%;
+}
+
+.song-desc h3,
+.song-desc p {
+    color: white;
+    padding: 0.5em;
+    font-size: 1.3em;
+    text-align: center;
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 1), 4px -4px 5px rgba(0, 0, 0, 1);
+    font-family: "Vegabond";
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 6em;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.waveform {
+    width: 80%;
+    align-self: center;
+}
+
+.duration {
+    color: white;
+    min-width: 5em;
+    width: 8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls {
+    display: flex;
+    width: 30em;
+    height: 4em;
+    margin: 1em auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
