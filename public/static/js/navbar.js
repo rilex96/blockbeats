@@ -21,11 +21,9 @@ $(document).ready(function () {
         if ($(window).scrollTop() > 100) {
             navbar.fadeOut(300);
             hamburger.fadeIn(300);
-            navbarMobile.fadeIn(300);
         } else {
             navbar.fadeIn(300);
             hamburger.fadeOut(300);
-            navbarMobile.fadeOut(300);
         }
     });
 });

@@ -1,0 +1,14 @@
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=blockbeats
+DB_USERNAME=myblockbeab9
+DB_PASSWORD=lwhu8aD8
+
+
+DB_CONNECTION=mysql
+DB_HOST=mysql.blockbeatzofficial.com
+DB_PORT=3306
+DB_DATABASE=blockbeatz
+DB_USERNAME=blockroot
+DB_PASSWORD=Pendulum123

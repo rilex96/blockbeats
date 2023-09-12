@@ -77,8 +77,8 @@ body {
 }
 
 @font-face {
-    font-family: "Norwester";
-    src: url("../fonts/norwester.otf") format("opentype");
+    font-family: "vegabond";
+    src: url("../fonts/vegabond.ttf") format("truetype");
 }
 @font-face {
     font-family: "Forsythe-Normal";
@@ -94,9 +94,11 @@ body {
     justify-content: center;
     width: 100%;
     background-image: url("../images/welcome.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    background-blend-mode: darken;
     align-items: center;
     min-height: 100vh;
     height: auto;
@@ -155,15 +157,9 @@ body {
     justify-content: center;
     text-align: center;
     width: 100%;
-    font-family: "Forsythe-Normal", sans-serif;
     text-shadow: 2px 2px 4px #020101, -2px -2px 4px #000000;
 }
 
-.center__text p.intro {
-    margin-top: 3em;
-    font-size: 1.3em;
-    text-shadow: 4px 4px 4px #000000;
-}
 @keyframes slide-in {
     from {
         transform: translateX(-100%);
@@ -174,26 +170,28 @@ body {
 }
 
 .center__text h2 {
-    font-size: 3em;
-    margin: 2em auto;
+    font-size: 4em;
+    margin: 1em auto 0.7em auto;
+    font-family: "Vegabond", sans-serif;
 }
 
 .center__text h3 {
-    font-size: 1.7em;
-}
-.center__text p {
-    font-size: 2.4em;
-    margin-bottom: 2em;
+    font-size: 2em;
+    margin: 1em auto 2em auto;
+    font-family: "Forsythe-Normal", sans-serif;
 }
 
 @media (max-width: 768px) {
-    .welcome__container::before {
+    .welcome__container {
         background: url("../images/welcome-cropped.jpg");
+        background-color: rgba(0, 0, 0, 0.5);
+        background-blend-mode: darken;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
+        height: auto;
     }
     .top-left {
         position: absolute;
@@ -211,7 +209,7 @@ body {
 
     .top-left h1 {
         font-family: "Forsythe-Bold", sans-serif;
-        font-size: 1.5em;
+        font-size: 1.5em !important;
         height: 1em;
     }
 
@@ -225,13 +223,21 @@ body {
     }
 
     .center__text h2 {
-        font-size: 2em;
+        font-size: 4em !important;
+    }
+    .center__text h3 {
+        font-size: 1.5em !important;
     }
 
-    .center__text p {
-        font-size: 1em;
-        margin-top: 1em;
+    .slideshow {
+        position: relative;
+        width: 300px; /* Adjust as needed */
+        min-height: 360px; /* Adjust as needed */
+        height: auto;
+        overflow: hidden;
+        margin: 2em auto;
     }
+
     .center__text h2,
     .center__text p {
         text-align: center;
@@ -263,11 +269,11 @@ h1.music_text {
 
 .text-about {
     width: 100%;
+    min-height: 100vh;
     height: auto;
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    font-size: 1.6em;
     align-items: stretch;
     white-space: wrap;
     word-wrap: break-word;
@@ -276,23 +282,30 @@ h1.music_text {
 .text-about h2 {
     position: relative;
     color: #fff;
-
-    margin: 2em auto;
+    font-family: "vegabond", sans-serif;
+    font-size: 4em;
+    margin: 1.5em auto;
     text-align: center;
+    letter-spacing: 5px;
 }
 
 .text-about p {
-    padding: 0 1em;
+    padding: 0.1em 1em;
     display: flex;
     width: 100%;
+    font-size: 1.7em;
     height: auto;
     position: relative;
     color: #fff;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-    .text-about {
-        font-size: 1em;
+    .text-about h2 {
+        font-size: 2.6em;
+    }
+    .text-about p {
+        font-size: 19px !important;
     }
 }
 
@@ -393,40 +406,19 @@ label.form_label {
 }
 
 button.form_submit {
-    width: 180px;
-    height: 80px;
-    font-size: 28px;
-    border: none;
-    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.8em 1.6em;
+    font-family: system-ui;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    background: -webkit-linear-gradient(#d89e03, #ccbf07);
     color: white;
-    font-weight: 500;
-    border-radius: 40px;
-    margin: 1em auto 1em auto;
+    margin: auto;
+    border: 1px solid #c3d103;
+    border-radius: 10px;
     cursor: pointer;
-    animation: bg-change 1s linear 1 alternate forwards;
-    transition: animation 1s ease-in-out;
 }
-
 button.form_submit:hover {
-    animation: bg-change-hover 1s linear 1 alternate forwards;
-}
-
-@keyframes bg-change {
-    0% {
-        background-color: rgba(44, 201, 30, 0.7);
-    }
-    100% {
-        background-color: rgba(0, 0, 0, 1);
-    }
-}
-
-@keyframes bg-change-hover {
-    0% {
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-    100% {
-        background-color: rgb(10, 54, 4);
-    }
+    background-color: #e0ff58;
 }
 
 .social_container {
@@ -443,9 +435,9 @@ button.form_submit:hover {
 }
 
 .social_circle {
-    width: 10em;
-    height: 10em;
-    padding: 2em;
+    width: 7em;
+    height: 7em;
+    padding: 1em;
     background: #0000008f;
     border-radius: 50%;
     display: flex;
@@ -456,6 +448,18 @@ button.form_submit:hover {
 
 .social_circle:hover {
     background: rgb(0, 0, 0);
+}
+
+@media (max-width: 768px) {
+    .social_circle {
+        width: 5em;
+        height: 5em;
+        padding: 1em;
+        margin: 1em;
+    }
+    button.form_submit {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -484,11 +488,6 @@ button.form_submit:hover {
         margin: 15px;
     }
 
-    button.form_submit {
-        width: 5em;
-        font-size: 24px;
-    }
-
     .social_media {
         margin: 2em;
         width: 90%;
@@ -514,5 +513,51 @@ button.form_submit:hover {
     .form_textarea {
         width: 70%;
         font-size: 16px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .navbar {
+        font-size: 16px;
+    }
+    .top-left h1 {
+        font-size: 2em;
+    }
+    .center__text h2 {
+        font-size: 5em;
+    }
+    /*    .text-about h2 {
+        font-size: 2.5em;
+    } */
+
+    .text-about p {
+        font-size: 1.3em;
+    }
+    h1.contact_text {
+        font-size: 1.8em;
+    }
+
+    .social_circle {
+        width: 6em;
+        height: 6em;
+        padding: 1em;
+    }
+
+    button .form_submit {
+        padding: 0.8em 1.4em;
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1600px) {
+    .center__text h2 {
+        font-size: 6em;
+    }
+    .center__text h3 {
+        font-size: 3em;
+    }
+
+    .text-about h2 {
+        font-size: 3.5em;
     }
 }

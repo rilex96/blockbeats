@@ -10,6 +10,7 @@ class Music extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'title',
         'genre',
         'bpm',

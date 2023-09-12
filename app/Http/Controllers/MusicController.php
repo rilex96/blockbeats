@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMusicRequest;
-use App\Http\Requests\UpdateMusicRequest;
 use App\Models\Music;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class MusicController extends Controller
 {
@@ -62,27 +61,46 @@ class MusicController extends Controller
         return view('songpage.player', compact('songs', 'selectedSongIndex'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Music $music)
+    public function update(Request $request, Music $song)
     {
-        //
+        if($song->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
+        $formFields = $request->validate([
+            'title' => 'required',
+            'genre' => 'required',
+            'bpm' => 'required',
+        ]);
+
+        if($request->hasFile('image_file')) {
+            $newImageFilePath = $request->file('image_file')->store('images', 'public');
+            $formFields['image_file'] = $newImageFilePath;
+        }
+
+        if($request->hasFile('song_file')) {
+            $newSongFilePath = $request->file('song_file')->store('songs', 'public');
+            $formFields['song_file'] = $newSongFilePath;
+        }
+
+        $song->update($formFields);
+        return redirect('/')->with('message', 'Song is edited successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateMusicRequest $request, Music $music)
+     public function edit(Music $song)
     {
-        //
+        if ($song->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        return view('songpage.songedit', ['song' => $song]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Music $music)
+    public function destroy(Music $song)
     {
-        //
+        if($song->user_id != auth()->id()) {
+            abort(403,'Unauthorized action.');
+        }
+        $song->delete();
+        return redirect('/')->with('message', 'Song deleted successfully!');
     }
 }

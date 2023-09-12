@@ -90,7 +90,8 @@
 .player {
     display: flex;
     width: 60%;
-    height: 50vh;
+    min-height: 50vh;
+    height: auto;
     margin: 0 auto;
     justify-content: center;
     flex-direction: column;
@@ -205,7 +206,9 @@
     border-radius: 5px;
 }
 
-a.playlist-row {
+.playlist-row {
+    display: flex;
+    justify-content: space-between;
     color: #fff;
     padding: 1em;
     border-bottom: 1px solid white;
@@ -214,7 +217,7 @@ a.playlist-row {
     transition: background 0.3s ease-in-out;
 }
 
-a.playlist-row:hover {
+.playlist-row:hover {
     background-color: rgba(49, 45, 112, 0.5);
 }
 
@@ -300,4 +303,27 @@ a.playlist-row:hover {
         display: block;
         height: 100%;
     }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+}
+
+.edit {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.delete {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: grabbing;
 }

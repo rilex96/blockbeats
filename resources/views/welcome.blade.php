@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Blockbeatz Official</title>
 
     <!-- Custom -->
     <link rel="stylesheet" href="static/css/navbar.css">
@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="static/images/logo.svg" type="image/x-icon">
     <title>BlockBeatz</title>
     <link rel="stylesheet" href="static/css/music.css">
@@ -20,14 +23,15 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
     <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     {{-- @vite('resources/css/app.css') --}}
 </head>
 
 <body class="antialiased">
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 z-50 selection:bg-red-500 selection:text-white">
         {{-- @if (Route::has('login'))
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @auth
@@ -85,15 +89,7 @@
                     <div class="center__text">
                         <h2>Authentic Hip-Hop Music</h2>
                         <h3>High-Quality beats and instrumentals</h3>
-                        <p class="intro">
-                            If you're on the hunt for custom-made hip-hop beats that scream originality and vibe, then
-                            you've come to the right place.<br /> <br /> From the hard-hitting boom-bap to the smooth
-                            and soulful
-                            melodies, I've got the range to cater to your unique style and vision. <br /><br />
-                            Whether you're an aspiring rapper looking for that perfect backdrop for your lyrical flow, a
-                            filmmaker in need of a killer soundtrack, or a content creator searching for the perfect
-                            beat to
-                            set the mood for your videos, I've got you covered.</p>
+                        <x-welcome-slide />
                     </div>
                 </div>
             </header>
@@ -133,22 +129,48 @@
                                         id="previous">
                                 </div>
                                 <div class="control-btn" id="play-pause">
-                                    <img src="{{ asset('static/images/play.svg') }}" alt="play-pause" id="playPause">
+                                    <img src="{{ asset('static/images/play.svg') }}" alt="play-pause"
+                                        id="playPause">
                                 </div>
                                 <div class="control-btn side">
                                     <img src="{{ asset('static/images/forwards.svg') }}" alt="next"
                                         id="next">
                                 </div>
+                                @auth
+                                    <div class="upload-song"><a href="create/"><i class="fas fa-solid fa-upload"
+                                                style="color: white"></i></a>
+                                    </div>
+                                @endauth
+
                             </div>
                         </div>
                     </div>
                     <div class="playlist-wrapper">
                         <div class="playlist" id="playlist">
                             @foreach ($songs as $index => $song)
-                                <a class="playlist-row" data-playlist-id="playlist-{{ $index }}">
-                                    <h3>{{ $song->title }}</h3>
-                                    <p>{{ $song->genre }}</p>
-                                </a>
+                                <div class="playlist-row" data-playlist-id="playlist-{{ $index }}">
+                                    <a>
+                                        <div class="play-desc">
+                                            <h3>{{ $index + 1 }}. {{ $song->title }}</h3>
+                                            <p>{{ $song->genre }}</p>
+                                        </div>
+                                    </a>
+
+                                    @auth
+                                        <div class="buttons">
+                                            <a class="edit" href="song/{{ $song->id }}/edit">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </a>
+                                            <form method="POST" action="/song/{{ $song->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="delete"><i class="fa-solid fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    @endauth
+
+
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -162,14 +184,19 @@
                 <div class="text-about">
                     <h2>ABOUT ME</h2>
                     <p>
-                        Hey there, welcome to my official page! <br>
+                        Hey there, welcome to my official page!
+                    </p>
+
+                    <p>
                         I'm Marko, a beat maker and music producer from Belgrade, Serbia.
                         Ever since I was a young kid, hip-hop culture, especially its music, has had a massive impact on
                         me.
                         It all started back in 2000 when I took my first steps into the world of beat creation. After
                         finishing up high school, I decided to take my skills to the next level and pursued higher
                         education
-                        at the esteemed Faculty of Music Arts in Belgrade. <br> <br>
+                        at the esteemed Faculty of Music Arts in Belgrade.
+                    </p>
+                    <p>
                         It was in 2008 when I proudly graduated as a Sound Designer and Music Producer. Simultaneously,
                         I
                         embarked on a fulfilling professional path as a Sound Engineer at the renowned National
@@ -177,11 +204,15 @@
                         of Serbia. From live music concerts to sports events, from films to TV dramas, I've had the
                         incredible opportunity to be part of it all. These experiences served as invaluable
                         opportunities
-                        for honing my expertise and expanding my repertoire. <br> <br>
+                        for honing my expertise and expanding my repertoire.
+                    </p>
+                    <p>
                         Today, I'm the proud owner of a professional music studio, where the magic happens. Within its
                         walls, I compose, record, mix, and master music, as well as undertake sound design and editing
                         for
-                        commercials and podcasts. <br> <br>
+                        commercials and podcasts.
+                    </p>
+                    <p>
                         I consider myself fortunate to have found a harmonious balance between my passion and my
                         profession.
                     </p>
@@ -194,26 +225,33 @@
                     <h1 class="contact_text">
                         So, if you're ready to level up your music game with custom hip-hop beats that'll make heads
                         turn,
-                        hit me up. Let's create something special together and make your tracks stand out from the
+                        hit me up. {{-- Let's create something special together and make your tracks stand out from the
                         crowd.
-                        Get in touch today, and let's make magic happen!
+                        Get in touch today, and let's make magic happen! --}}
 
                     </h1>
                     <div class="social_container">
                         <div class="social_media">
-                            <div class="social_circle 1">
-                                <img src="static/images/instagram.svg" alt="instagram">
-                            </div>
-                            <div class="social_circle 2">
-                                <img src="static/images/unknown.svg" alt="still to decide">
-                            </div>
-                            <div class="social_circle 3">
-                                <img src="static/images/unknown.svg" alt="still to decide">
-                            </div>
+                            <a href="https://www.instagram.com/block.beatz" target="_blank">
+                                <div class="social_circle 1">
+                                    <img src="static/images/instagram.svg" alt="instagram">
+                                </div>
+                            </a>
+                            <a href="https://soundcloud.com/user-893097170" target="_blank">
+                                <div class="social_circle 2">
+                                    <img src="static/images/soundcloud.svg" alt="still to decide">
+                                </div>
+                            </a>
+                            <a href="https://www.audiojungle.net/collections/10645375-best-sellers" target="_blank">
+                                <div class="social_circle 3">
+                                    <img src="static/images/audiojungle.svg" alt="still to decide">
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="email_form">
-                        <form action="views/send_email.php" method="post" id="email_form">
+                        <form action="{{ route('send.email') }}" method="post" id="email_form">
+                            @csrf
                             <div class="input_container">
                                 <label class="form_label" for="name">Name:</label>
                                 <input class="form_input" placeholder="Type your full name here" type="text"
@@ -402,6 +440,10 @@
                     // Hide the loader
                     loader.style.display = 'none';
                 });
+
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 3000);
 
                 var playlistRow = document.querySelector('.playlist-row[data-playlist-id="playlist-' + index + '"]');
                 if (playlistRow) {
